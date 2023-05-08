@@ -4,13 +4,14 @@
 
 ## Installation
 
-To install the package, run the following command:
-
 ```sh
 npm install defer-if
 ```
 
 ## Usage
+
+This is a quick demo showing how to use `defer-if` to only defer data when the user agent is a
+mobile device.
 
 ```javascript
 import { deferIf } from "defer-if";
@@ -32,6 +33,7 @@ export function loader({ request }) {
 
 export default function Component() {
     const data = useLoaderData<typeof loader>();
+
     return (
         <Suspense fallback="Loading...">
             <Await resolve={data.value3}>

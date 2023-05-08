@@ -1,6 +1,6 @@
 {
   "name": "defer-if",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": " Extend Remix's `defer` to easily conditionally defer data",
   "repository": "https://github.com/oscarnewman/defer-if",
   "main": "dist/index.js",
