@@ -1,36 +1,45 @@
-# @oscarnewman/defer-if
+# defer-if
 
-`@oscarnewman/defer-if` is a utility package that extends the functionality of Remix's `defer` method, allowing you to conditionally defer the resolution of promises based on a predicate function or a boolean value. This package can be helpful in server-rendering scenarios where you might want to control the loading behavior of certain data.
+`defer-if` is a utility package that extends the functionality of Remix's `defer` method, allowing you to conditionally defer the resolution of promises based on a predicate function or a boolean value. This package can be helpful in server-rendering scenarios where you might want to control the loading behavior of certain data.
 
 ## Installation
 
 To install the package, run the following command:
 
 ```sh
-npm install @oscarnewman/defer-if
+npm install defer-if
 ```
 
 ## Usage
 
 ```javascript
-import { deferIf } from "@oscarnewman/defer-if";
+import { deferIf } from "defer-if";
+import { isMobileUserAgent } from "../your-utils";
 
-// Your data object containing promises and/or other values
-const data = {
-  value1: fetchSomething(),
-  value2: "This is a static value",
-  value3: fetchSomethingElse(),
-};
+export function loader({ request }) {
+    const data = {
+        value1: await fetchSomething(), // this will always block (never defer)
+        value2: "This is a static value",
+        value3: fetchSomethingElse(), // this will either block or defer based on `deferIf`
+    };
 
-// Using deferIf
-const deferredData = await deferIf(
-  data,
-  () => someCondition, // Predicate function or boolean
-  {
-    alwaysAwait: ["value1"],
-    neverAwait: ["value2"],
-  }
-);
+    // Using deferIf
+   return await deferIf(
+        data,
+        () => isMobileUserAgent(request), // Predicate function or boolean
+    );
+}
+
+export default function Component() {
+    const data = useLoaderData<typeof loader>();
+    return (
+        <Suspense fallback="Loading...">
+            <Await resolve={data.value3}>
+                {(value) => <MyComponent /* ... props */ />}
+            </Await>
+        </Suspense>
+    );
+}
 ```
 
 ## Documentation
@@ -48,7 +57,7 @@ const deferredData = await deferIf(
 
 1. Fork the repository on GitHub.
 2. Clone the forked repository to your local machine.
-3. Run `npm install` to install the dependencies.
+3. Run `bun install` to install the dependencies.
 4. Make your changes or add new features, and ensure that your code follows the existing style and conventions.
 5. If you've added new functionality, update the README.md file with relevant information.
 6. Run tests to ensure everything is working as expected.
