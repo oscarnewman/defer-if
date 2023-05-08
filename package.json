@@ -1,6 +1,6 @@
 {
   "name": "defer-if",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": " Extend Remix's `defer` to easily conditionally defer data",
   "repository": "https://github.com/oscarnewman/defer-if",
   "main": "dist/index.js",
@@ -15,7 +15,9 @@
   },
   "scripts": {
     "test": "bun test",
-    "build": "tsup"
+    "build": "tsup",
+    "publish": "npm publish",
+    "changeset": "changeset"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +26,7 @@
     "@remix-run/router": "^1"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.26.1",
     "@remix-run/server-runtime": "^1.16.0",
     "bun-types": "^0.5.8",
     "eslint": "^8.40.0",
