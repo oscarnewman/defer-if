@@ -15,6 +15,22 @@ const doesThrow = async (fn: () => any) => {
   return threw;
 };
 
+const deferredDataEqual = async (
+  given: TypedDeferredData<any>,
+  expected: TypedDeferredData<any>
+) => {
+  const keysToCheck = [
+    "pendingKeysSet",
+    "subscribers",
+    "deferredKeys",
+    "init",
+    "data",
+  ];
+  keysToCheck.forEach((key) => {
+    // @ts-expect-error we're accessing private properties here
+    expect(given[key]).toEqual(expected[key]);
+  });
+};
 
 describe("deferSingleItemConditionally", () => {
   it("should return a promise if predicate is true", async () => {
