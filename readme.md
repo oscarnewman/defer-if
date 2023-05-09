@@ -1,6 +1,6 @@
 # defer-if
 
-`defer-if` is a utility package that extends the functionality of Remix's `defer` method, allowing you to conditionally defer the resolution of promises based on a predicate function or a boolean value. This package can be helpful in server-rendering scenarios where you might want to control the loading behavior of certain data.
+`defer-if` is a utility package that extends the functionality of Remix's `defer` method, allowing you to easily conditionally defer or not defer data based on some programmatic criteria.
 
 ## Installation
 
@@ -61,7 +61,7 @@ export default function Component() {
 2. Clone the forked repository to your local machine.
 3. Run `bun install` to install the dependencies.
 4. Make your changes or add new features, and ensure that your code follows the existing style and conventions.
-5. If you've added new functionality, update the README.md file with relevant information.
+5. If you've added new functionality, update the README.md file with relevant information and add tests.
 6. Run tests to ensure everything is working as expected.
 7. Commit your changes and push them to your forked repository.
 8. Create a pull request from your fork to the main repository with a clear and concise description of your changes.
