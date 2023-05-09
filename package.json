@@ -16,7 +16,7 @@
   "scripts": {
     "test": "bun test",
     "build": "tsup",
-    "publish": "npm publish",
+    "publish": "bun run build && npm publish",
     "changeset": "changeset"
   },
   "keywords": [],
