@@ -25,10 +25,7 @@ export function loader({ request }) {
     };
 
     // Using deferIf
-   return await deferIf(
-        data,
-        () => isMobileUserAgent(request), // Predicate function or boolean
-    );
+   return await deferIf(data, isMobileUserAgent(request));
 }
 
 export default function Component() {
